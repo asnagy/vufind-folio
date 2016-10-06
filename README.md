@@ -14,6 +14,7 @@ As FOLIO is multi-tenant, you will need to specify the tenant that you are inter
 ## Usage
 
 To load MARC records into FOLIO, take the following steps:
+
 0. create a MARC file named `load.mrc`
 0. Run the folio-load.php script:
 ```

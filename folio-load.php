@@ -22,6 +22,7 @@ $jwt = JWT::encode($token, $key);
 */
 
 echo "POST Bibs\n";
+$i=0;
 $marc = new File_MARC('load.mrc', File_MARC::SOURCE_FILE);
 while ($record = $marc->next()) {
     $http = new HTTP_Request($bibApiUrl);
@@ -47,8 +48,10 @@ while ($record = $marc->next()) {
     } else {
         echo 'Code: ' . $http->getResponseCode() . "\n";
         echo 'Body: ' . $http->getResponseBody() . "\n";
+        $i++;
     }
 }
+echo "Records Submitted: $i";
 echo "\n";
 
 ?>
