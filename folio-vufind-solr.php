@@ -5,9 +5,10 @@ require_once 'HTTP/Request.php';
 //use \Firebase\JWT\JWT;
 
 // -- Configuration --
-$tenant = 'andrew';
-$bibApiUrl = 'http://localhost:8084/apis/bibs';
-$solrBibUrl = 'http://localhost:8080/solr/biblio/update?commit=true';
+$configs = parse_ini_file('folio-vufind.ini', true);
+$tenant = $configs['FOLIO']['tenant'];
+$bibApiUrl = $configs['FOLIO']['bibApiUrl'];
+$solrBibUrl = $configs['VuFind']['solrUrl'];
 
 /*
 // Generate JWT Token
@@ -66,7 +67,7 @@ while ($recordsExist) {
         echo "Record: $json\n";
 
         // Push to records to SOLR
-        $http = new HTTP_Request($solrBibUrl);
+        $http = new HTTP_Request($solrBibUrl . '/update?commit=true');
         $http->setMethod(HTTP_REQUEST_METHOD_POST);
         $http->addHeader('Content-Type', 'application/json');
         $http->setBody($json);

@@ -6,8 +6,9 @@ require_once 'File/MARC.php';
 //use \Firebase\JWT\JWT;
 
 // --------- Configuration ------------
-$tenant = 'andrew';
-$bibApiUrl = 'http://localhost:8084/apis/bibs';
+$configs = parse_ini_file('folio-vufind.ini', true);
+$tenant = $configs['FOLIO']['tenant'];
+$bibApiUrl = $configs['FOLIO']['bibApiUrl'];
 
 /*
 // Generate JWT Token
